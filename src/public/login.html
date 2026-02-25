@@ -1,0 +1,74 @@
+<!-- src/public/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram File Manager - Login</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <h1>Telegram File Manager</h1>
+        <p>Login with your Telegram account</p>
+      </div>
+
+      <!-- Step 1: Phone -->
+      <div id="step-phone" class="login-step active">
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="+959xxxxxxxxx" autocomplete="tel">
+          <small>Include country code (e.g., +959...)</small>
+        </div>
+        <button id="btn-send-code" class="btn btn-primary" onclick="sendCode()">
+          <span class="btn-text">Send Code</span>
+          <span class="btn-loading" style="display:none;">
+            <span class="spinner"></span> Sending...
+          </span>
+        </button>
+      </div>
+
+      <!-- Step 2: Code -->
+      <div id="step-code" class="login-step">
+        <div class="input-group">
+          <label for="code">Verification Code</label>
+          <input type="text" id="code" placeholder="12345" maxlength="6" autocomplete="one-time-code">
+          <small>Check your Telegram app for the code</small>
+        </div>
+        <button id="btn-verify" class="btn btn-primary" onclick="verifyCode()">
+          <span class="btn-text">Verify & Login</span>
+          <span class="btn-loading" style="display:none;">
+            <span class="spinner"></span> Verifying...
+          </span>
+        </button>
+        <button class="btn btn-secondary" onclick="goBack()">← Back</button>
+      </div>
+
+      <!-- Step 3: 2FA Password -->
+      <div id="step-password" class="login-step">
+        <div class="input-group">
+          <label for="password">Two-Factor Password</label>
+          <input type="password" id="password" placeholder="Your 2FA password">
+          <small>Your account has 2FA enabled</small>
+        </div>
+        <button id="btn-password" class="btn btn-primary" onclick="submitPassword()">
+          <span class="btn-text">Submit Password</span>
+          <span class="btn-loading" style="display:none;">
+            <span class="spinner"></span> Verifying...
+          </span>
+        </button>
+      </div>
+
+      <div id="error-message" class="error-message" style="display:none;"></div>
+    </div>
+  </div>
+  <script src="/js/login.js"></script>
+</body>
+</html>
